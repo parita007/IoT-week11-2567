@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+         .card-img-top {
+            width: 100%; /* ทำให้รูปภาพเต็มความกว้างของการ์ด */
+            height: 200px; /* กำหนดความสูงคงที่ของรูปภาพ */
+            object-fit: cover; /* ให้รูปภาพเติมเต็มพื้นที่และไม่บิดเบือน */
+        }
+        body {
+            background-color: #c4cee2;
+        }
+    </style>
+    <script src="/script.js"></script>
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-lg shadow" style="background-color: rgb(178, 193, 236); color: white;">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fa-solid fa-tv"></i>
+                <i class="fa-solid fa-a logo-icon"></i>
+                <i class="fa-solid fa-n logo-icon"></i>
+                <i class="fa-solid fa-i logo-icon"></i>
+                <i class="fa-solid fa-m logo-icon"></i>
+                <i class="fa-solid fa-e logo-icon"></i>
+            </a>   
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link <%= active =='home' ? 'active':'' %>" href="/"><i class="fa-solid fa-house"></i>Home</a>
+                    </li>
+
+                    <% if (user) {%>
+                        <li class="nav-item">
+                            <a class="nav-link <%= active == 'profile' ? 'active':'' %>" href="/profile"><i class="fa-solid fa-user"></i>Profile</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link <%= active =='posts' ? 'active':'' %>" href="/posts"><i class="fa-solid fa-pen-to-square"></i>Post</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <%= user.name %>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form action="/logout" method="post">
+                                        <input type="submit" value="Logout" class="dropdown-item">
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    <% } else {%>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login"><i class="fa-solid fa-right-to-bracket"></i>Login</a>
+                        </li>
+                    <%} %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
